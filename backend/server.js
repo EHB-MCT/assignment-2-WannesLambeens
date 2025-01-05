@@ -35,7 +35,7 @@ app.use('/api/data', dataRoutes);
 // Start Server
 const startServer = async () => {
   await connectDB(); // Verbind met de database voordat de server start
-  const PORT = process.env.PORT || 5000;
+  const PORT = process.env.PORT || 5001;
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 };
 
