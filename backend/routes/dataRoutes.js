@@ -13,5 +13,14 @@ router.post('/', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
+// GET route - Fetch all data
+router.get('/', async (req, res) => {
+  try {
+    const allData = await Data.find();
+    res.status(200).json(allData);
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 module.exports = router;
