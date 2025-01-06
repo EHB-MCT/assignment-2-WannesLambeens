@@ -1,25 +1,25 @@
 const mongoose = require('mongoose');
 
-const DataSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: [true, 'Naam is verplicht'],
-      trim: true,
-      maxlength: [50, 'Naam mag maximaal 50 tekens lang zijn'],
-    },
-    email: {
-      type: String,
-      required: [true, 'E-mail is verplicht'],
-      trim: true,
-    },
-    message: {
-      type: String,
-      required: [true, 'Bericht is verplicht'],
-      maxlength: [500, 'Bericht mag maximaal 500 tekens lang zijn'],
-    },
-  }
-);
-
-// Exporteer het model
-module.exports = mongoose.model('Data', DataSchema);
+const MatchSchema = new mongoose.Schema(
+    {
+      team1: {
+        type: String,
+        required: [true, 'Ploeg 1 is verplicht'],
+        trim: true,
+        maxlength: [50, 'Ploegnaam mag maximaal 50 tekens lang zijn'],
+      },
+      team2: {
+        type: String,
+        required: [true, 'Ploeg 2 is verplicht'],
+        trim: true,
+        maxlength: [50, 'Ploegnaam mag maximaal 50 tekens lang zijn'],
+      },
+      score: {
+        type: Number,
+        required: [true, 'Score is verplicht'],
+        min: [1, 'Score moet minimaal 1 zijn'],
+        max: [5, 'Score mag maximaal 5 zijn'],
+      },
+    }
+  );
+  module.exports = mongoose.model('Match', MatchSchema);

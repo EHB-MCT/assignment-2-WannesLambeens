@@ -1,25 +1,27 @@
 const express = require('express');
-const Data = require('../models/dataModels');
+const Match = require('../models/dataModels');
 
 const router = express.Router();
 
-// POST route - Create new data
+// POST-route - Nieuwe wedstrijd opslaan
 router.post('/', async (req, res) => {
   try {
-    const { name, email, message } = req.body;
-    const newData = await Data.create({ name, email, message });
-    res.status(201).json(newData);
+    const { team1, team2, score } = req.body;
+
+    const newMatch = await Match.create({ team1, team2, score });
+    res.status(201).json(newMatch);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
-// GET route - Fetch all data
+
+// GET-route - Haal alle wedstrijden op
 router.get('/', async (req, res) => {
   try {
-    const allData = await Data.find();
-    res.status(200).json(allData);
+    const matches = await Match.find(); // Haal alle documenten op uit de Match-collectie
+    res.status(200).json(matches); // Stuur de opgehaalde data als JSON terug
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+    res.status(500).json({ error: 'Server error' }); // Stuur een foutmelding bij serverfouten
   }
 });
 
