@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
 
 // Importeer en gebruik extra routes
 const dataRoutes = require('./routes/dataRoutes');
+
 app.use('/api/data', dataRoutes);
 
 // Start Server
